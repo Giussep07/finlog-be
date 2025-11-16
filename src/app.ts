@@ -1,8 +1,15 @@
 import express from 'express';
 import morgan from "morgan";
+import cors from "cors";
 import categoryRoutes from './routes/category.route';
+import envConfig from './config/env';
 
 const app = express();
+
+app.use(cors({
+    origin: envConfig.corsOrigins.split(",") || [],
+    credentials: true
+}));
 
 app.use(morgan("dev"));
 
